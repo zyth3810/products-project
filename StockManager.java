@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Manage the stock in a business.
@@ -35,8 +36,16 @@ public class StockManager
      * @param id The ID of the product.
      * @param amount The amount to increase the quantity by.
      */
+    
+    // Question 4
+    
     public void delivery(int id, int amount)
     {
+        Product product = findProduct(id);
+        if (product != null){
+            product.increaseQuantity(amount);
+        }
+        
     }
     
     /**
@@ -44,8 +53,16 @@ public class StockManager
      * @return The identified product, or null if there is none
      *         with a matching ID.
      */
+    
+    // Question 2
+    
     public Product findProduct(int id)
     {
+        for (Product product : stockList){
+            if (product.getID() == id){
+                return product;
+            }
+        }
         return null;
     }
     
@@ -56,15 +73,28 @@ public class StockManager
      * @param id The ID of the product.
      * @return The quantity of the given product in stock.
      */
+    
+    // Question 3
+    
     public int numberInStock(int id)
     {
+        Product product = findProduct(id);
+        if (product != null){
+            return product.getQuantity();
+        }
         return 0;
     }
 
     /**
      * Print details of all the products.
      */
+    
+    // Question 1
+    
     public void printProductDetails()
     {
+        for (Product product : stockList){
+            System.out.println(product);
+        }
     }
 }
